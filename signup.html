@@ -101,11 +101,11 @@
             <span class="signup-input">
                 <select id="sigup-gender" onblur="gender()" class="selectbox" onchange=""
                     style="font-size: 19px; width: 184px; height: 28px;">
-                    <option value="gender">성별</option>
+                    <option value="">성별</option>
                     <option value="man">남자</option>
                     <option value="woman">여자</option>
                 </select><br>
-                <input type="hidden" id="sigup-gender1" value="">
+
                 <label id="gendercheck" style="font-size: 13px; position: relative; "></label>
             </span><br>
             <label style="font-size: 20px; font-weight: bold; position: relative; left: 10px;">이메일 입력(선택)</label><br>
@@ -163,7 +163,7 @@
         const name = document.getElementById("signUp-name");
         const yyyy = document.getElementById("signup-birth-yyyy");
         const dd = document.getElementById("signup-birth-dd");
-        const gender = document.getElementById("signup-gender1");
+        const gender = document.getElementById("sigup-gender").value;
         const phone = document.getElementById("signup-phone-fff");
         const address = document.getElementById("sample6_detailAddress");
 
@@ -212,7 +212,6 @@
             pwd.focus();
             return false;
         }
-
 
         if (pwd1.value == "") {
             pwdresult1.style.color = "red";
@@ -297,11 +296,19 @@
             return false;
         }
 
+        if(gender == ""){
+            genderresult.style.color = "red";
+            genderresult.innerHTML = "성별을 입력해주세요."
+            gender.focus();
+            return false;
+        }
+
         if (phone.value == "") {
             phoneresult.style.color = "red";
             phoneresult.style.right = "17px";
             phoneresult.innerHTML = "입력하지않았어용!";
             phone.focus();
+            console.log("dd");
             return false;
         }
 
@@ -450,7 +457,7 @@
     function gender() {
         const genderresult = document.getElementById("gendercheck");
         const gender1 = document.getElementById("sigup-gender").value;
-        if (gender1 === "gender") {
+        if (gender1 == "") {
             genderresult.style.color = "red";
             genderresult.innerHTML = "필수정보입니다."
         } else {

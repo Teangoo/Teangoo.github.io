@@ -14,16 +14,17 @@
             if(validate(input[i]) == false){
                 showValidate(input[i]);
                 check=false;
+            
             }
         }
-
+    //    return document.location.href ="index.html";
         return check;
     });
 
 
     $('.validate-form .input100').each(function(){
         $(this).focus(function(){
-           hideValidate(this);
+        hideValidate(this);
         });
     });
 
@@ -51,7 +52,6 @@
 
         $(thisAlert).removeClass('alert-validate');
     }
-    
     
 
 })(jQuery);
