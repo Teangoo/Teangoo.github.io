@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link href="css/styles.css" rel="stylesheet" />
+</head>
+<style>
+    input::placeholder {
+        text-align: center;
+    }
+
+    #signup-birth-yyyy::placeholder {
+        text-align: left;
+    }
+
+    #signup-birth-dd::placeholder {
+        text-align: left;
+    }
+
+    .signup-input-birth #signup-birth-mm {
+        width: 177px;
+        height: 24px;
+        text-align: left;
+    }
+
+    #backgrond {
+        background-color: rgba(46, 47, 48, 0.199);
+        text-align: center;
+    }
+
+    #sigup-gender {
+        width: 177px;
+        height: 24px;
+        text-align: center;
+    }
+</style>
+
+<body>
+    <!-- <form class="needs-validation" novalidate> -->
+    <div id="backgrond">
+        <h1 style="border: 1.8px solid black;">회원가입 사이트 입니다.</h1>
+        <div>
+            <label style="font-size: 20px; font-weight: bold;" style="position:relative; left:8px;">아이디</label><br>
+            <span class="signup-input">
+                <input id="signup-id" type="text" onblur="idcheck()" autofocus></input><br>
+                <label id="idcheck" style="font-size: 13px; position: relative;"></label>
+            </span><br>
+            <label style="font-size: 20px; font-weight: bold;">비밀번호</label><br>
+            <span class="signup-input">
+                <input id="signup-pwd" type="password" onblur="pwdcheck()" style="position:relative; left:8px;"><i
+                    id="icon1" class="bi bi-lock-fill" style="position: relative; left: 7px;"></i><br>
+                <label id="pwdcheck" style="font-size: 13px; position: relative;"></label>
+            </span><br>
+            <label style="font-size: 20px; font-weight: bold;">비밀번호확인</label><br>
+            <span class="signup-input">
+                <input id="signup-pwdcheck" type="password" onblur="pwdcheck2()" style="position:relative; left: 8px;"
+                    required><i id="icon2" class="bi bi-lock-fill" style="position: relative; left: 7px;"></i><br>
+                <label id="pwdResult" style="font-size: 13px; position: relative;"></label>
+            </span>
+        </div>
+
+        <div style="margin-top:3px;">
+            <label style="font-size: 20px; font-weight: bold;">이름</label><br>
+            <span class="signup-input">
+                <input id="signUp-name" onblur="namecheck()" type="text"><br>
+                <label id="namecheck" style="font-size: 13px; position: relative;"></label>
+            </span><br>
+            <label style="font-size: 20px; font-weight: bold;">생년월일</label><br>
+            <span class="signup-input-birth">
+                <input type="text" id="signup-birth-yyyy" onblur="yyyy()" placeholder="년(4자)">
+            </span>
+            <span class="signup-input-birth" style="margin: left 10px;">
+                <select id="signup-birth-mm" class="selectbox" onchange=""
+                    style="font-size: 19px; width: 184px; height: 28px; position:relative; top: 1px;">
+                    <option value="1">1월</option>
+                    <option value="2">2월</option>
+                    <option value="3">3월</option>
+                    <option value="4">4월</option>
+                    <option value="5">5월</option>
+                    <option value="6">6월</option>
+                    <option value="7">7월</option>
+                    <option value="8">8월</option>
+                    <option value="9">9월</option>
+                    <option value="10">10월</option>
+                    <option value="11">11월</option>
+                    <option value="12">12월</option>
+                </select>
+            </span>
+            <span class="signup-input-birth" style="margin: left 10px;">
+                <input type="text" id="signup-birth-dd" onblur="dd()" placeholder="일"><br>
+                <label id="birthresult" style="font-size: 13px; position: relative;"></label>
+            </span><br>
+            <label style="font-size: 20px; font-weight: bold;">성별</label><br>
+            <span class="signup-input">
+                <select id="sigup-gender" onblur="gender()" class="selectbox" onchange=""
+                    style="font-size: 19px; width: 184px; height: 28px;">
+                    <option value="gender">성별</option>
+                    <option value="man">남자</option>
+                    <option value="woman">여자</option>
+                </select><br>
+                <input type="hidden" id="sigup-gender1" value="">
+                <label id="gendercheck" style="font-size: 13px; position: relative; "></label>
+            </span><br>
+            <label style="font-size: 20px; font-weight: bold; position: relative; left: 10px;">이메일 입력(선택)</label><br>
+            <span class="signup-input">
+                <input type="text" id="signup-email" style="position: relative; left: 60px;" placeholder="이메일주소입력"><span
+                    style="text-align: center; position: relative; left: 60px;"> @</span>
+                <input type="text" id="signup-email1" style="position: relative; left: 60px;">
+                <select id="signup-emailselect" onchange="emailSelect()" style="position: relative; left: 60px;">
+                    <option value="">직접입력</option>
+                    <option value="naver.com">naver.com</option>
+                    <option value="kakao.com">kakao.com</option>
+                    <option value="gmail.com">gmail.com</option>
+                    <option value="nate.com">nate.com</option>
+                    <option value="hanmail.net">hanmail.net</option>
+                </select>
+
+            </span><br>
+            <label style="font-size: 20px; font-weight: bold;">휴대전화</label><br>
+            <span class="signup-input">
+                <select id="phone-select" style="font-size: 19px; width: 184px; height: 28px;">
+                    <option value="+82">대한민국 +82</option>
+                    <option value="+81">일본 +81</option>
+                    <option value="+1">미국/캐나다 +1</option>
+                </select><br>
+                <input type="text" id="signup-phone-fff" onblur="phoneSelect()" placeholder="전화번호 입력"
+                    style="margin-top: 4px;"><br>
+                <label id="phonecheck" style="font-size: 13px; position: relative;"></label>
+            </span>
+        </div>
+        <label style="font-size: 20px; font-weight: bold;">주소</label>
+        <div style="margin: top 4px;">
+            <span class="signup-input">
+                <input type="text" id="sample6_postcode" placeholder="우편번호" style="position: relative; left: 54px;">
+                <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"
+                    style="position: relative; left: 54px;"><br>
+                <input type="text" id="sample6_address" placeholder="주소" style="margin-top: 2px;"><br>
+                <input type="text" id="sample6_detailAddress" onblur="address()" placeholder="상세주소"
+                    style="margin-top: 2px;">
+                <input type="text" id="sample6_extraAddress" placeholder="참고항목"><br>
+                <label id="addresscheck" style="font-size: 13px; position: relative;"></label>
+            </span>
+        </div>
+        <button type="button" class="btn btn-primary btn-lg" id="signup-pass" style="color: white; background-color: black
+    ; margin-top: 1px ; width: 400px; height: 50px;" onclick="button()">
+            <span style="font-size: 24px; text-align: center; ">가입하기</span></button>
+
+    </div>
+    <!-- </form> -->
+</body>
+<script>
+    function button() {
+        const id = document.getElementById("signup-id");
+        const pwd = document.getElementById("signup-pwd");
+        const pwd1 = document.getElementById("signup-pwdcheck");
+        const name = document.getElementById("signUp-name");
+        const yyyy = document.getElementById("signup-birth-yyyy");
+        const dd = document.getElementById("signup-birth-dd");
+        const gender = document.getElementById("signup-gender1");
+        const phone = document.getElementById("signup-phone-fff");
+        const address = document.getElementById("sample6_detailAddress");
+
+        const idresult = document.getElementById("idcheck");
+        const pwdresult = document.getElementById("pwdcheck");
+        const pwdresult1 = document.getElementById("pwdResult");
+        const nameresult = document.getElementById("namecheck");
+        const birthresult = document.getElementById("birthresult");
+        const genderresult = document.getElementById("gendercheck");
+        const phoneresult = document.getElementById("phonecheck");
+        const addressresult = document.getElementById("addresscheck");
+
+        const namesize1 = document.getElementById("signUp-name").value;
+        const namesize = namesize1.length;
+
+
+        if (id.value == "") {
+            idresult.style.color = "red";
+            idresult.style.right = "40px";
+            idresult.innerHTML = "입력하지않았어요!";
+            id.focus();
+            return false;
+        }
+        const idexp = /^[A-Z a-z\d-_]{5,12}$/;
+        if (!id.value.match(idexp)) {
+            idresult.style.color = "red";
+            idresult.style.right = "17px";
+            idresult.innerHTML = "5~12이내로 작성하여주세요 <br> 대소문자/숫자/특수문자(-_)만 사용가능합니다.";
+            id.focus();
+            return false;
+        }
+
+        if (pwd.value == "") {
+            pwdresult.style.color = "red";
+            pwdresult.style.right = "40px";
+            pwdresult.innerHTML = "입력하지않았어용!";
+            pwd.focus();
+            return false;
+        }
+        const pwdexp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,13}$/;
+        if (!pwd.value.match(pwdexp)) {
+
+            pwdresult.style.color = "red";
+            pwdresult.style.right = "17px";
+            pwdresult.innerHTML = "8~13이내로 작성하여주세요<br>대소문자/숫자/특수문자가 반드시 포함되어야합니다.";
+            pwd.focus();
+            return false;
+        }
+
+
+        if (pwd1.value == "") {
+            pwdresult1.style.color = "red";
+            pwdresult1.style.right = "40px";
+            pwdresult1.innerHTML = "입력하지않았어용!";
+            pwd1.focus();
+            return false;
+        }
+
+        if (pwd1.value !== pwd.value) {
+            const icon1 = document.getElementById("icon1");
+            const icon2 = document.getElementById("icon2");
+            pwdresult1.style.color = "red";
+            pwdresult1.style.right = "17px";
+            pwdresult1.innerHTML = "비밀번호가 일치하지않아요";
+            pwdresult.style.color = "red";
+            pwdresult.style.right = "17px";
+            pwdresult.innerHTML = "비밀번호가 일치하지않아요";
+            icon1.style.color = "red";
+            icon2.style.color = "red";
+            pwd.focus();
+            return false;
+        }
+
+        if(namesize<3 || namesize >=6){
+            nameresult.style.color = "red";
+            nameresult.style.right = "17px";
+            nameresult.innerHTML = "잘못된입력이예요!";
+            name.focus();
+            return false;
+        }
+
+        if (name.value == "") {
+            nameresult.style.color = "red";
+            nameresult.style.right = "40px";
+            nameresult.innerHTML = "입력하지않았어용!";
+            name.focus();
+            return false;
+        }
+
+        const yyyyexp = /(^19|20)\d{2}$/;
+        if(!yyyy.value.match(yyyyexp)){
+            birthresult.style.color = "red";
+            birthresult.style.right = "17px";
+            birthresult.innerHTML = "정말이신가요?!";
+            yyyy.focus();
+            return false;
+        }
+
+        if (yyyy.value == "") {
+            birthresult.style.color = "red";
+            birthresult.style.right = "17px";
+            birthresult.innerHTML = "년도를 입력하지않았어용!";
+            yyyy.focus();
+            return false;
+        }
+
+        const ddexp = /^(0[1-9]|[12][0-9]|3[01])$/;
+        if(!dd.value.match(ddexp)){
+            birthresult.style.color = "red";
+            birthresult.style.right = "17px";
+            birthresult.innerHTML = "잘못입력했어용!!";
+            dd.focus();
+            return false;
+        }
+
+        if (dd.value == "") {
+            birthresult.style.color = "red";
+            birthresult.style.right = "17px";
+            birthresult.innerHTML = "일을 입력하지않았어용!";
+            dd.focus();
+            return false;
+        }
+
+        const phoneexp = /^\d{3}-\d{3,4}-\d{4}$/;
+
+        if(!phone.value.match(phoneexp)){
+            phoneresult.style.color = "red";
+            phoneresult.style.right = "3px";
+            phoneresult.innerHTML = "잘못된 입력입니다.<br>000-0000-0000형식으로 입력하세요!";
+            phone.focus();
+            return false;
+        }
+
+        if (phone.value == "") {
+            phoneresult.style.color = "red";
+            phoneresult.style.right = "17px";
+            phoneresult.innerHTML = "입력하지않았어용!";
+            phone.focus();
+            return false;
+        }
+
+        if (address.value == "") {
+            addressresult.style.color = "red";
+            addressresult.style.right = "17px";
+            addressresult.innerHTML = "입력하지않았어용!";
+            address.focus();
+            return false;
+        }
+        alert("회원가입이 완료되었습니다.")
+        document.location.href="login.html";
+        
+    }
+
+    function idcheck() {
+        const id1 = document.getElementById("signup-id").value;
+        const idresult1 = document.getElementById("idcheck");
+        const idresult = id1.length;
+        const exp = /^[A-Z a-z\d-_]{5,12}$/;
+        if (idresult == 0) {
+            idresult1.style.color = "red";
+            idresult1.style.right = "50px";
+            idresult1.innerHTML = "필수사항입니다."
+
+        } else if (id1.match(exp)) {
+            idresult1.style.color = "green";
+            idresult1.style.right = "50px";
+            idresult1.innerHTML = "멋진아이디네요!"
+
+        } else if (!id1.match(exp)) {
+            idresult1.style.color = "red";
+            idresult1.style.right = "17px";
+            idresult1.innerHTML = "5~12이내로 작성하여주세요<br> 대소문자/숫자/특수문자(-_)만 사용가능합니다."
+
+        }
+    }
+
+    function pwdcheck() {
+        const pwd1 = document.getElementById("signup-pwd").value;
+        const icon1 = document.getElementById("icon1");
+        const pwdresult1 = document.getElementById("pwdcheck");
+        const pwdresult = pwd1.length;
+        const exp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,13}$/;
+        if (pwdresult == 0) {
+            pwdresult1.style.color = "red";
+            pwdresult1.style.right = "50px";
+            pwdresult1.innerHTML = "필수사항입니다."
+            icon1.style.color = "red";
+        } else if (pwd1.match(exp)) {
+            icon1.style.color = "green";
+            pwdresult1.innerHTML = ""
+        } else if (!pwd1.match(exp)) {
+            pwdresult1.style.color = "red";
+            pwdresult1.style.right = "17px";
+            pwdresult1.innerHTML = "8~13이내로 작성하여주세요<br>대소문자/숫자/특수문자가 반드시 포함되어야합니다."
+            icon1.style.color = "red";
+        }
+    }
+
+    function pwdcheck2() {
+        const pwd2 = document.getElementById("signup-pwdcheck").value;
+        const icon2 = document.getElementById("icon2");
+        const pwdresult2 = document.getElementById("pwdResult");
+        const pwdresult = pwd2.length;
+        const pwd1 = document.getElementById("signup-pwd").value;
+        if (pwdresult == 0) {
+            pwdresult2.style.color = "red";
+            pwdresult2.style.right = "50px";
+            pwdresult2.innerHTML = "필수사항입니다."
+            icon2.style.color = "red";
+        } else if (pwd2 === pwd1) {
+            pwdresult2.style.color = "green";
+            pwdresult2.style.right = "34px";
+            pwdresult2.innerHTML = "비밀번호가일치합니다."
+            icon2.style.color = "green";
+        } else {
+            pwdresult2.style.color = "red";
+            pwdresult2.style.right = "17px";
+            pwdresult2.innerHTML = "비밀번호가 일치하지않습니다."
+            icon2.style.color = "red";
+        }
+    }
+
+    function namecheck() {
+        const name1 = document.getElementById("signUp-name").value;
+        const namesize = name1.length;
+        const nameresult = document.getElementById("namecheck");
+        if (namesize == 0) {
+            nameresult.style.color = "red";
+            nameresult.style.right = "50px";
+            nameresult.innerHTML = "필수사항입니다."
+        } else if (namesize >= 3 && namesize < 6) {
+            nameresult.style.color = "green";
+            nameresult.style.right = "50px";
+            nameresult.innerHTML = "멋진이름이네요."
+        } else {
+            nameresult.style.color = "red";
+            nameresult.style.right = "45px";
+            nameresult.innerHTML = "잘못된 입력입니다."
+        }
+    }
+
+    function emailSelect() {
+        const select1 = document.getElementById("signup-emailselect").value;
+        const emailaddress = document.getElementById("signup-email1");
+        emailaddress.value = select1;
+    }
+
+    function yyyy() {
+        const birthresult = document.getElementById("birthresult");
+        const yyyy = document.getElementById("signup-birth-yyyy").value;
+        const yyyySize = yyyy.length;
+        const exp = /(^19|20)\d{2}$/;
+        if (yyyySize == 0) {
+            birthresult.style.color = "red";
+            birthresult.style.right = "240px";
+            birthresult.innerHTML = "필수사항입니다.";
+        } else if (!yyyy.match(exp)) {
+            birthresult.style.color = "red";
+            birthresult.style.right = "230px";
+            birthresult.innerHTML = "잘못된 입력입니다.";
+        } else if (yyyy.match(exp)) {
+            birthresult.innerHTML = "";
+        }
+    }
+
+    function dd() {
+        const birthresult = document.getElementById("birthresult");
+        const dd = document.getElementById("signup-birth-dd").value;
+        const ddSize = dd.length;
+        const exp = /^(0[1-9]|[12][0-9]|3[01])$/;
+        if (ddSize == 0) {
+            birthresult.style.color = "red";
+            birthresult.style.right = "240px";
+            birthresult.innerHTML = "필수사항입니다.";
+        } else if (!dd.match(exp)) {
+            birthresult.style.color = "red";
+            birthresult.style.right = "230px";
+            birthresult.innerHTML = "잘못된 입력입니다.";
+        } else if (dd.match(exp)) {
+            birthresult.innerHTML = "";
+        }
+    }
+
+    function gender() {
+        const genderresult = document.getElementById("gendercheck");
+        const gender1 = document.getElementById("sigup-gender").value;
+        if (gender1 === "gender") {
+            genderresult.style.color = "red";
+            genderresult.innerHTML = "필수정보입니다."
+        } else {
+            genderresult.innerHTML = ""
+            const gender2 = document.getElementById("sigup-gender1");
+            gender2.value = gender1;
+        }
+    }
+
+    function phoneSelect() {
+        const exp = /^\d{3}-\d{3,4}-\d{4}$/;
+        const phone = document.getElementById("signup-phone-fff").value;
+        const phoneresult = document.getElementById("phonecheck");
+        const phonesize = phone.length;
+        if (phonesize == 0) {
+            phoneresult.style.color = "red";
+            phoneresult.style.right = "50px";
+            phoneresult.innerHTML = "필수정보입니다."
+
+        } else if (phone.match(exp)) {
+            phoneresult.innerHTML = ""
+        } else if (!phone.match(exp)) {
+            phoneresult.style.color = "red";
+            phoneresult.style.right = "3px";
+            phoneresult.innerHTML = "잘못된 입력입니다.<br>000-0000-0000형식으로 입력하세요";
+        }
+    }
+    function address() {
+        const address = document.getElementById("sample6_detailAddress").value;
+        const addresssize = address.length;
+        const addressresult = document.getElementById("addresscheck");
+        if (addresssize == 0) {
+            addressresult.style.color = "red";
+            addressresult.innerHTML = "필수입력입니다."
+        }
+    }
+    // function button(){
+    //     onclick=alert('회원가입되었습니다')
+    //     location.href="./index.html";
+    // }
+</script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+    function sample6_execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function (data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var addr = ''; // 주소 변수
+                var extraAddr = ''; // 참고항목 변수
+
+                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                    addr = data.roadAddress;
+                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                    addr = data.jibunAddress;
+                }
+
+                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+                if (data.userSelectedType === 'R') {
+                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                    if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+                        extraAddr += data.bname;
+                    }
+                    // 건물명이 있고, 공동주택일 경우 추가한다.
+                    if (data.buildingName !== '' && data.apartment === 'Y') {
+                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                    if (extraAddr !== '') {
+                        extraAddr = ' (' + extraAddr + ')';
+                    }
+                    // 조합된 참고항목을 해당 필드에 넣는다.
+                    document.getElementById("sample6_extraAddress").value = extraAddr;
+
+                } else {
+                    document.getElementById("sample6_extraAddress").value = '';
+                }
+
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById('sample6_postcode').value = data.zonecode;
+                document.getElementById("sample6_address").value = addr;
+                // 커서를 상세주소 필드로 이동한다.
+                document.getElementById("sample6_detailAddress").focus();
+            }
+        }).open();
+    }
+</script>
+
+</html>
